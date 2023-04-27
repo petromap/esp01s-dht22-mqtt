@@ -1,7 +1,11 @@
 # esp01s-dht22-mqtt
 Simple ESP-01s + DHT22 sensor, communicating over MQTT to data collecting service.
 
-TODO: explain how to configure, the env.h
+## Configure project and build
+
+Copy `src/env.example.h` to `src/env.h`. Edit settings in it, especially the ones for WLAN and MQTT to match your environment. 
+
+This is a PlatformIO project and easiest way to build and upload is using commands provided by this platform.
 
 TODO: explain what and where to sending data
 
