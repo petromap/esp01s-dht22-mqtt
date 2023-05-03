@@ -14,7 +14,6 @@ WiFiUDP netUDP;
 NTPClient timeClient(netUDP, "europe.pool.ntp.org", 0, 300000);
 PubSubClient client(net);
 DHTesp dht;
-unsigned long prev_report;
 
 void WiFi_Init() {
   WiFi.forceSleepWake();
@@ -100,8 +99,6 @@ void setup() {
   delay(15000);
   digitalWrite(LED, HIGH);
   #endif
-
-  prev_report = millis() - sampling_period;
 }
 
 void reconnectBroker() {
@@ -156,10 +153,6 @@ void print_wifi_status() {
 }
 
 void loop() {
-  //if ((millis() - prev_report) > sampling_period) {
-    delay(1000);
-  //  return;
-  //}
 
   // Wake up modem as we've swithed it off, see end of the loop
   WiFi_Init();
@@ -231,10 +224,10 @@ void loop() {
 
   // Switch modem off, for a long long wait
   WiFi_Off();
-/*
+
   if (sampling_period < abs(dht.getMinimumSamplingPeriod())) {
     delay(dht.getMinimumSamplingPeriod());
   } else {
     delay(sampling_period);
-  }*/
+  }
 }
